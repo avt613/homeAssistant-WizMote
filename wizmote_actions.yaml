@@ -1,0 +1,42 @@
+blueprint:
+  name: WizMote Action
+  domain: automation
+  input:
+    remote:
+      name: WizMote Mac Address
+      description: Mac address of the WizMote can be found by watching for
+        the 'esphome.wizmote_choose' or 'esphome.wizmote_action' events
+        as you press a button. (enter without any ':')
+      selector:
+        text:
+    wizmote_btn:
+      name: Action Button on WizMote
+      selector:
+        select:
+          options:
+            - label: "ON"
+              value: "1"
+            - label: "OFF"
+              value: "2"
+            - label: "SLEEP"
+              value: "3"
+            - label: "-"
+              value: "8"
+            - label: "+"
+              value: "9"
+    on_action:
+      name: Action when button pressed
+      selector:
+        action:
+
+mode: restart
+
+trigger:
+  platform: event
+  event_type: esphome.wizmote_choose
+  event_data:
+    mac: !input remote
+    button: !input wizmote_btn
+
+action: !input "on_action"
+

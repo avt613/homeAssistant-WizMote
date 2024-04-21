@@ -1,0 +1,36 @@
+blueprint:
+  name: WizMote Playlist
+  domain: automation
+  input:
+    remote:
+      name: WizMote Mac Address
+      description: Mac address of the WizMote can be found by watching for
+        the 'esphome.wizmote_choose' or 'esphome.wizmote_action' events
+        as you press a button. (enter without any ':')
+      selector:
+        text:
+    wizmote_btn:
+      name: Playlist Button on WizMote
+      selector:
+        select:
+          options:
+            - "1"
+            - "2"
+            - "3"
+            - "4"
+    on_action:
+      name: Action when button pressed
+      selector:
+        action:
+
+mode: restart
+
+trigger:
+  platform: event
+  event_type: esphome.wizmote_action
+  event_data:
+    mac: !input remote
+    button: !input wizmote_btn
+
+action: !input "on_action"
+
