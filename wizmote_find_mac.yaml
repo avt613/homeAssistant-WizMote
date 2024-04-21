@@ -1,3 +1,7 @@
+blueprint:
+  name: WizMote Find MAC
+  domain: automation
+
 alias: WizMote Find MAC
 description: "Sends notification with MAC, button number and event type whenever any button press on a WizMote is detected."
 trigger:
