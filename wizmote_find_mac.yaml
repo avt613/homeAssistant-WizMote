@@ -1,15 +1,12 @@
 alias: WizMote Find MAC
-description: ""
+description: "Sends notification with MAC, button number and event type whenever any button press on a WizMote is detected."
 trigger:
   - platform: event
     event_type: esphome.wizmote_choose
   - platform: event
     event_type: esphome.wizmote_action
-    event_data: {}
-condition: []
 action:
   - service: notify.persistent_notification
-    metadata: {}
     data:
       message: >-
         Button {{trigger.event.data.button}} ({{trigger.event.event_type}}) pressed on WizMote with MAC:
