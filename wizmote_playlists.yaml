@@ -27,7 +27,7 @@ mode: restart
 
 trigger:
   platform: event
-  event_type: esphome.wizmote_action
+  event_type: esphome.wizmote_choose
   event_data:
     mac: !input remote
     button: !input wizmote_btn
